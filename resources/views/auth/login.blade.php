@@ -26,6 +26,7 @@
                                         </span>
                                     @enderror
                                 </div>
+
                                 <div class="form-group">
                                     <input id="password-field" type="password"
                                         class="form-control @error('password') is-invalid @enderror" required

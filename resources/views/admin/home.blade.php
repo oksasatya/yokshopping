@@ -2,5 +2,5 @@
 
 
 @section('content')
-    <h1>Welcome to Admin</h1>
+    <h1>hai</h1>
 @endsection
