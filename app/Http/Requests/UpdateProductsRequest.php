@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UpdateProductsRequest extends FormRequest
@@ -33,10 +35,10 @@ class UpdateProductsRequest extends FormRequest
         ];
     }
 
-    public function execute()
+    public function execute($id)
     {
 
-        $product = new Products();
+        $product = Products::findorfail($id);
         $product->name = $this->name;
         $product->sell_price = $this->sell_price;
         $product->buy_price = $this->buy_price;
@@ -52,5 +54,9 @@ class UpdateProductsRequest extends FormRequest
         }
 
         $product->save();
+        // update pivot table user and product
+        $user = User::find(Auth::user()->id);
+        // update table product_user without deleting all data
+        $user->products()->syncWithoutDetaching([$product->id]);
     }
 }

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductsRequest;
 use App\Http\Requests\UpdateProductsRequest;
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -19,7 +21,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Products::latest()->paginate(10);
+
+        // get search query
+        $search = request()->query('search');
+        // get all products
+        // // user find id
+        $user = User::find(Auth::user()->id);
+        // get all products and handle search query
+        $products = $user->products()->where('name', 'like', '%' . $search . '%')->latest()->paginate(5);
+        // $products = $user->products()->latest()->paginate(5)->appends(['search' => $search]);
         return view('admin.product.index', compact('products'));
     }
 

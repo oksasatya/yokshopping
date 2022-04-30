@@ -46,4 +46,11 @@ class User extends Authenticatable
 
     public const IS_SELLER = 'seller';
     public const IS_USERS = 'users';
+
+
+    public function products()
+    {
+
+        return $this->belongsToMany(Products::class, 'products_users', 'user_id', 'product_id');
+    }
 }

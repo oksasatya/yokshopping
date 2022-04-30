@@ -26,6 +26,8 @@ Auth::routes();
 
 Route::middleware(['auth', 'verified', 'users'])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    // show product
+    Route::get('/product/{id}', [HomeController::class, 'detailProduct'])->name('show');
 });
 
 

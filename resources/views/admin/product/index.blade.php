@@ -10,12 +10,28 @@
             </div>
         @endif
     </div>
-    <div class="col-md-10 text-end mb-4 mt-5">
-        <button type="button" class="btn btn-green text-white" data-bs-toggle="modal" data-bs-target="#createProduct"
-            id="open">
-            Create Product
-        </button>
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6 d-inline position-absolute mt-5">
+                <form action="{{ route('admin.product.index') }}" method="GET" role="search">
+                    <div class="input-group">
+                        <input type="text" name="search" placeholder="search Product" class="form-control"
+                            value="{{ Request::get('search') }}">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search" aria-hidden="true"></i>Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-10 text-end mt-5 mb-4 ">
+                <button type="button" class="btn btn-green text-white" data-bs-toggle="modal"
+                    data-bs-target="#createProduct" id="open">
+                    Create Product
+                </button>
+            </div>
+        </div>
     </div>
+
     <div class="container">
         <div class="col-md-10 align-items-center mt-2 ms-2 overflow-hidden">
             <table class="table table-bordered shadow-sm">
@@ -32,9 +48,9 @@
                 <tbody>
                     @if (count($products) == 0)
                         <div class="text-center">
-                            <p class="text-muted mt-3 m-0">Belum ada product yang dibuat</p>
+                            <p class="text-muted mt-3 m-0">No Product Foud</p>
                         </div>
-                    @else
+                    @elseif ($products->get('search') == '')
                         @foreach ($products as $product)
                             <tr class="table-light">
                                 <td>{{ $product->name }}</td>
@@ -51,7 +67,6 @@
                                 </td>
                                 <td>{{ $product->stock }}</td>
                                 <td>
-
                                     <button type="button" class="btn btn-warning py-1 mt-2 btn-sm text-white"
                                         data-bs-toggle="modal" data-bs-target="#editProduct{{ $product->id }}"
                                         data-community="" id="open">
@@ -97,6 +112,7 @@
                             </tr>
                             @include('admin.modal.edit')
                         @endforeach
+                        {{-- handle search not found --}}
                     @endif
                 </tbody>
             </table>
@@ -110,5 +126,4 @@
         </div>
     </div>
     @include('admin.modal.create')
-
 @endsection

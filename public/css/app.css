@@ -11292,7 +11292,7 @@ body {
 
 a {
   transition: 0.3s all ease;
-  color: #93CAED;
+  color: #40E0D0;
 }
 a:hover, a:focus {
   text-decoration: none !important;
@@ -11300,7 +11300,7 @@ a:hover, a:focus {
   box-shadow: none;
 }
 a:hover, a:active, a:focus {
-  color: #93CAED;
+  color: #40E0D0;
   outline: none !important;
   text-decoration: none !important;
 }
@@ -11314,7 +11314,7 @@ h1, h2, h3, h4, h5,
 }
 
 .bg-primary {
-  background: #93CAED !important;
+  background: #40E0D0 !important;
 }
 
 .btn-green {
@@ -11399,7 +11399,7 @@ h1, h2, h3, h4, h5,
 .form-control:focus, .form-control:active {
   outline: none !important;
   box-shadow: none;
-  border: 1px solid #93CAED;
+  border: 1px solid #40E0D0;
 }
 
 .field-icon {
@@ -11426,7 +11426,7 @@ h1, h2, h3, h4, h5,
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 1px;
-  color: #93CAED;
+  color: #40E0D0;
   font-weight: 700;
 }
 
@@ -11486,10 +11486,10 @@ h1, h2, h3, h4, h5,
 
 /* Style the checkmark/indicator */
 .checkbox-primary {
-  color: #93CAED;
+  color: #40E0D0;
 }
 .checkbox-primary input:checked ~ .checkmark:after {
-  color: #93CAED;
+  color: #40E0D0;
 }
 
 .btn {
@@ -11502,23 +11502,23 @@ h1, h2, h3, h4, h5,
   outline: none;
 }
 .btn.btn-primary {
-  background: #93CAED !important;
-  border: 1px solid #93CAED !important;
+  background: #40E0D0 !important;
+  border: 1px solid #40E0D0 !important;
   color: #fff !important;
 }
 .btn.btn-primary:hover {
-  border: 1px solid #93CAED;
+  border: 1px solid #40E0D0;
   background: transparent;
-  color: #93CAED;
+  color: #40E0D0;
 }
 .btn.btn-primary.btn-outline-primary {
-  border: 1px solid #93CAED;
+  border: 1px solid #40E0D0;
   background: transparent;
-  color: #93CAED;
+  color: #40E0D0;
 }
 .btn.btn-primary.btn-outline-primary:hover {
   border: 1px solid transparent;
-  background: #93CAED;
+  background: #40E0D0;
   color: #fff;
 }
 
@@ -11574,4 +11574,20 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.border-sedang {
+  border-radius: 22px;
+}
+
+.stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  content: "";
+  background-color: rgba(0, 0, 0, 0);
 }

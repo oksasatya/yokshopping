@@ -16,4 +16,11 @@ class Products extends Model
         'image',
         'stock',
     ];
+
+
+    public function user()
+    {
+
+        return $this->belongsToMany(User::class, 'products_users', 'user_id', 'product_id');
+    }
 }

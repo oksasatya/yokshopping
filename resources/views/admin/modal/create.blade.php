@@ -22,6 +22,7 @@
                             </span>
                         @enderror
                     </div>
+                    <input type="hidden" value="{{ Auth::user()->id }}">
                     <div class="form-group mb-3 ">
                         <label for="sell_price" class="form-label float-start">Harga Jual</label>
                         <input name="sell_price" class="form-control @error('sell_price') is-invalid @enderror"
@@ -57,7 +58,7 @@
                     <div class="form-group mb-3 ">
                         <label for="stock" class="form-label float-start">Stock</label>
                         <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock"
-                            name="stock" placeholder="Stock" value="{{ old('stock') }}">
+                            name="stock" placeholder="Stock" value="{{ old('stock') }}" min="0">
                         @error('stock')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
