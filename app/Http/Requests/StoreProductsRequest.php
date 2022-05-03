@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,13 +28,7 @@ class StoreProductsRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|min:6|max:255',
-            'sell_price' => 'required',
-            'buy_price' => 'required',
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:3000'],
-            'stock' => 'required|numeric|min:0|not_in:0',
-        ];
+        return Products::validationRules;
     }
 
 
@@ -50,11 +45,13 @@ class StoreProductsRequest extends FormRequest
         // handle file image upload
         if ($newImage) {
             if ($product->image) {
-                Storage::delete('public/' . $product->image);
+                // delete old image
+                Storage::delete($product->image);
             }
             $newImageStore = $newImage->store('products', 'public');
             $product->image = $newImageStore;
         }
+
         $product->save();
         // create pivot table user and product
         $user = User::find(Auth::user()->id);
