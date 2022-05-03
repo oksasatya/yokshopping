@@ -58,8 +58,9 @@
                                 <td class="text-small">{{ $product->buy_price }}</td>
                                 <td>
                                     @if ($product->image != null)
-                                        <img src="{{ asset('storage/' . $product->image) }}" class="rounded-circle"
-                                            style="width:75px; height:75px;" />
+                                        {{-- get image in storage --}}
+                                        <img src="{{ asset('storage/products/' . $product->image) }}"
+                                            alt="{{ $product->name }} " style="width:75px; height:75px;" />
                                     @else
                                         <img src="https://source.unsplash.com/1200x400?shoes" class="rounded-circle"
                                             style="width:75px; height:75px;" />

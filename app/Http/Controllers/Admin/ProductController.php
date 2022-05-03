@@ -103,6 +103,10 @@ class ProductController extends Controller
     public function destroy(Products $product)
     {
         $product->id;
+        // delete image in storage
+        Storage::delete('public/products/' . $product->image);
+
+        // delete product
         $product->delete();
         return redirect()->route('admin.product.index')->with('status', 'Product deleted successfully');
     }

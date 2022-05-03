@@ -8,6 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class StoreProductsRequest extends FormRequest
 {
@@ -44,12 +45,11 @@ class StoreProductsRequest extends FormRequest
 
         // handle file image upload
         if ($newImage) {
-            if ($product->image) {
-                // delete old image
-                Storage::delete($product->image);
-            }
-            $newImageStore = $newImage->store('products', 'public');
-            $product->image = $newImageStore;
+            // store image in storage
+            $newImageName = $newImage->getClientOriginalName();
+            $newImage->storeAs('public/products/', $newImageName);
+            // save image in public folder
+            $product->image = $newImageName;
         }
 
         $product->save();
