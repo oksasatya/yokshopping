@@ -16,8 +16,14 @@ class ProductsFactory extends Factory
      */
     public function definition()
     {
+        $image = basename($this->faker->image(storage_path('app/public/products'), 640, 480, null, false));
+
         return [
-            //
+            'name' => $this->faker->word,
+            'sell_price' => $this->faker->randomFloat(2, 0, 100),
+            'buy_price' => $this->faker->randomFloat(2, 0, 100),
+            'image' => $image,
+            'stock' => $this->faker->numberBetween(0, 100),
         ];
     }
 }
